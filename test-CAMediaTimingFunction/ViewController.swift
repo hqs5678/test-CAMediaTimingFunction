@@ -37,7 +37,18 @@ class ViewController: UIViewController {
         anim.duration = 2
         anim.repeatCount = 100
         
-        layer.addAnimation(anim, forKey: "drop")
+        let animRadius = CABasicAnimation(keyPath: "cornerRadius")
+        animRadius.fromValue = 50
+        animRadius.toValue = 2
+        animRadius.duration = 2
+        
+        let group = CAAnimationGroup()
+        group.animations = [anim, animRadius]
+        group.repeatCount = Float.infinity
+        group.duration = 2
+        group.timeOffset = 1
+        
+        layer.addAnimation(group, forKey: "drop")
     }
     
     
